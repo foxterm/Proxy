@@ -1,0 +1,90 @@
+// FoxTerm | ProxyType.swift
+// Copyright (c) 2025-2026 foxterm.app
+// Created by foxterm@foxmail.com
+
+import Foundation
+import libetos
+
+/// An enumeration representing the types of proxy servers that can be used.
+///
+/// - http: Represents an HTTP proxy server.
+/// - https: Represents an HTTPS proxy server.
+/// - socks5: Represents a SOCKS5 proxy server.
+public enum ProxyType: String, CaseIterable {
+    case socks5
+    case http
+    case https
+
+    public var portString: String {
+        switch self {
+        case .http:
+            "8080"
+        case .https:
+            "8080"
+        case .socks5:
+            "1080"
+        }
+    }
+
+    public var port: Int32 {
+        switch self {
+        case .http:
+            8080
+        case .https:
+            8080
+        case .socks5:
+            1080
+        }
+    }
+
+    public var value: Int32 {
+        switch self {
+        case .http:
+            ETOS_PROXY_HTTP
+        case .https:
+            ETOS_PROXY_HTTPS
+        case .socks5:
+            ETOS_PROXY_SOCKS5
+        }
+    }
+}
+
+public struct ProxyInfo {
+    public let type: ProxyType
+    public let host: String
+    public let port: Int
+    public let user: String
+    public let password: String
+    public let sslVerify: Bool
+    public let sniHost: String
+
+    public init(
+        type: ProxyType,
+        host: String,
+        port: Int,
+        user: String,
+        password: String,
+        sslVerify: Bool,
+        sniHost: String
+    ) {
+        self.type = type
+        self.host = host
+        self.port = port
+        self.user = user
+        self.password = password
+        self.sslVerify = sslVerify
+        self.sniHost = sniHost
+    }
+
+    public var ssl: OpaquePointer? {
+        if type == .https {
+            etos_ssl_init()
+            return etos_new_ssl()
+        }
+        return nil
+    }
+
+    public var isSSL: Bool {
+        type == .https
+    }
+}
