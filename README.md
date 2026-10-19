@@ -2,6 +2,8 @@
 
 FoxTerm APP 专用网络代理库，支持 SOCKS5 和 HTTP CONNECT 代理协议，基于 libetos 底层实现。
 
+> 本库为 [FoxTerm](https://foxterm.app/) APP 专用核心组件。如需使用完整功能，请下载 FoxTerm 客户端：[https://foxterm.app/](https://foxterm.app/)
+
 ## 功能
 
 - **SOCKS5** 代理（RFC 1928），支持用户名密码认证
