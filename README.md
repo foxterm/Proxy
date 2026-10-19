@@ -22,6 +22,18 @@ A dedicated network proxy library for FoxTerm APP, supporting SOCKS5 and HTTP CO
 
 ## Installation
 
+### Swift Package Manager
+
+```swift
+.package(url: "https://github.com/foxterm/Proxy.git", branch: "main"),
+```
+
+```swift
+.product(name: "Proxy", package: "Proxy"),
+```
+
+### CocoaPods
+
 ```ruby
 pod 'Proxy', :git => 'https://github.com/foxterm/Proxy.git'
 ```

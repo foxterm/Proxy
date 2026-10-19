@@ -22,6 +22,18 @@ FoxTerm APP 专用网络代理库，支持 SOCKS5 和 HTTP CONNECT 代理协议�
 
 ## 安装
 
+### Swift Package Manager
+
+```swift
+.package(url: "https://github.com/foxterm/Proxy.git", branch: "main"),
+```
+
+```swift
+.product(name: "Proxy", package: "Proxy"),
+```
+
+### CocoaPods
+
 ```ruby
 pod 'Proxy', :git => 'https://github.com/foxterm/Proxy.git'
 ```
