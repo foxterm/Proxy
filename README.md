@@ -1,45 +1,47 @@
 # Proxy
 
-FoxTerm APP 专用网络代理库，支持 SOCKS5 和 HTTP CONNECT 代理协议，基于 libetos 底层实现。
+[English](README.md) | [中文文档](README_CN.md)
 
-> 本库为 [FoxTerm](https://foxterm.app/) APP 专用核心组件，欢迎下载使用：[https://foxterm.app/](https://foxterm.app/)
+A dedicated network proxy library for FoxTerm APP, supporting SOCKS5 and HTTP CONNECT proxy protocols, built on the libetos底层 implementation.
 
-## 功能
+> This library is a dedicated core component for the [FoxTerm](https://foxterm.app/) APP. Welcome to download: [https://foxterm.app/](https://foxterm.app/)
 
-- **SOCKS5** 代理（RFC 1928），支持用户名密码认证
-- **HTTP CONNECT** 隧道代理，支持 Basic 认证
-- 可配置超时、网卡绑定
+## Features
 
-## 环境要求
+- **SOCKS5** proxy (RFC 1928) with username/password authentication
+- **HTTP CONNECT** tunnel proxy with Basic authentication
+- Configurable timeout and network interface binding
 
-| 平台 | 最低版本 |
-|------|---------|
-| iOS  | 17.0    |
-| macOS | 14.0   |
-| Swift | 5.10   |
+## Requirements
 
-## 安装
+| Platform | Minimum Version |
+|----------|----------------|
+| iOS      | 17.0           |
+| macOS    | 14.0           |
+| Swift    | 5.10           |
+
+## Installation
 
 ```ruby
 pod 'Proxy', :git => 'https://github.com/foxterm/Proxy.git'
 ```
 
-### 依赖
+### Dependencies
 
-- [libetos](https://github.com/foxterm/libetos) — 底层 Socket 实现
-- [Extension](https://github.com/foxterm/Extension) — Foundation 扩展
+- [libetos](https://github.com/foxterm/libetos) — Low-level socket implementation
+- [Extension](https://github.com/foxterm/Extension) — Foundation extensions
 
-## 使用
+## Usage
 
 ```swift
-// SOCKS5 代理（无认证）
+// SOCKS5 proxy (no authentication)
 let proxy = ProxyConfiguration(
     type: .socks5,
     proxyHost: "192.168.1.1",
     proxyPort: 1080
 )
 
-// SOCKS5 代理（带认证）
+// SOCKS5 proxy (with authentication)
 let proxy = ProxyConfiguration(
     type: .socks5,
     proxyHost: "proxy.example.com",
@@ -48,14 +50,14 @@ let proxy = ProxyConfiguration(
     auth: .init(user: "user", password: "pass")
 )
 
-// HTTP CONNECT 代理
+// HTTP CONNECT proxy
 let proxy = ProxyConfiguration(
     type: .http,
     proxyHost: "proxy.example.com",
     proxyPort: 8080
 )
 
-// 绑定指定网卡
+// Bind to a specific network interface
 let proxy = ProxyConfiguration(
     type: .socks5,
     proxyHost: "192.168.1.1",
@@ -63,10 +65,10 @@ let proxy = ProxyConfiguration(
     ifname: "en0"
 )
 
-// 通过代理连接目标主机，返回 Socket fd
+// Connect to target host through proxy, returns Socket fd
 let fd = proxy.connect(host: "example.com", port: 22)
 ```
 
-## 许可证
+## License
 
 MIT
